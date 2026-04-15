@@ -6,6 +6,10 @@
       "destination": "https://api.noturl.in/:path*"
     },
     {
+      "source": "/(about|contact|privacy-policy|terms|help)",
+      "destination": "/index.html"
+    },
+    {
       "source": "/:shortId([A-Za-z0-9_-]{6,})",
       "destination": "https://api.noturl.in/:shortId"
     }

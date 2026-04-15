@@ -1,6 +1,7 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import "./styles.css";
 import { GOOGLE_CLIENT_ID } from "./config/env";
@@ -8,9 +9,11 @@ import { AuthProvider } from "./context/AuthContext";
 
 const appTree = (
   <React.StrictMode>
-    <AuthProvider>
-      <App />
-    </AuthProvider>
+    <BrowserRouter>
+      <AuthProvider>
+        <App />
+      </AuthProvider>
+    </BrowserRouter>
   </React.StrictMode>
 );
 

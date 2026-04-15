@@ -78,7 +78,12 @@ function QrCodeModal({ open, linkItem, onClose, addToast }) {
             </div>
           ) : qrDataUrl ? (
             <div className="flex flex-col items-center">
-              <img src={qrDataUrl} alt="QR code preview" className="h-64 w-64 rounded-lg bg-white p-2" />
+              <img
+                src={qrDataUrl}
+                alt="URL shortener dashboard QR code preview"
+                loading="lazy"
+                className="h-64 w-64 rounded-lg bg-white p-2"
+              />
             </div>
           ) : (
             <div className="flex h-64 items-center justify-center text-sm text-slate-500 dark:text-slate-400">

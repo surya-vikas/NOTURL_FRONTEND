@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import { Helmet } from "react-helmet";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   FiArrowUpRight,
@@ -36,7 +37,7 @@ const landingHighlights = [
   {
     icon: FiTrendingUp,
     title: "Real-time performance",
-    description: "Track click growth and understand what drives engagement.",
+    description: "Track clicks, monitor analytics, and understand what drives engagement.",
   },
   {
     icon: FiLock,
@@ -59,7 +60,7 @@ function UnifiedWorkspace() {
   const { user, isAuthenticated, login, logout, updateUser } = useAuth();
   const { toasts, addToast, removeToast } = useToasts();
 
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState("dark");
   const [originalUrl, setOriginalUrl] = useState("");
   const [customAlias, setCustomAlias] = useState("");
   const [generatedUrl, setGeneratedUrl] = useState(null);
@@ -82,6 +83,16 @@ function UnifiedWorkspace() {
   const [selectedLinkForQr, setSelectedLinkForQr] = useState(null);
   const aliasInputRef = useRef(null);
   const isAdmin = isAuthenticated && user?.role === "admin";
+  const seoTitle = isAdmin
+    ? "Admin Dashboard - NotURL"
+    : isAuthenticated
+    ? "Dashboard - NotURL Link Analytics"
+    : "NotURL - Fast & Secure URL Shortener";
+  const seoDescription = isAdmin
+    ? "Review NotURL users, links, and admin reports from one secure dashboard."
+    : isAuthenticated
+    ? "Manage shortened links, track clicks, review analytics, and organize URLs in your NotURL dashboard."
+    : "NotURL is a free URL shortener with analytics. Shorten links, track clicks, and manage URLs easily.";
 
   const applyTheme = (nextTheme) => {
     const normalizedTheme = nextTheme === "dark" ? "dark" : "light";
@@ -92,7 +103,7 @@ function UnifiedWorkspace() {
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
-    applyTheme(savedTheme === "dark" ? "dark" : "light");
+    applyTheme(savedTheme === "light" ? "light" : "dark");
   }, []);
 
   useEffect(() => {
@@ -450,6 +461,16 @@ function UnifiedWorkspace() {
 
   return (
     <main className="min-h-screen bg-white text-slate-900 transition-colors duration-300 dark:bg-slate-950 dark:text-slate-100">
+      <Helmet>
+        <title>{seoTitle}</title>
+        <meta name="description" content={seoDescription} />
+        <link rel="canonical" href="https://noturl.in" />
+        <meta property="og:title" content={seoTitle} />
+        <meta property="og:description" content={seoDescription} />
+        <meta property="og:url" content="https://noturl.in" />
+        <meta name="twitter:title" content={seoTitle} />
+        <meta name="twitter:description" content={seoDescription} />
+      </Helmet>
       <ToastContainer toasts={toasts} onDismiss={removeToast} />
 
       <UnifiedNavbar
@@ -534,17 +555,17 @@ function UnifiedWorkspace() {
               className="mx-auto max-w-4xl text-center"
             >
               <h1 className="text-4xl font-extrabold leading-tight tracking-tight text-slate-900 dark:text-slate-100 sm:text-5xl lg:text-6xl">
-                Shorten Links.
+                Free URL Shortener
+                <br />
+                with Analytics -
                 <br />
                 <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-                  Track Performance.
+                  NotURL
                 </span>
-                <br />
-                Grow Faster.
               </h1>
               <p className="mx-auto mt-5 max-w-3xl text-base text-slate-600 dark:text-slate-300 sm:text-lg">
-                Create branded short links, monitor analytics, and manage URLs from one powerful
-                dashboard.
+                NotURL is a free URL shortener with analytics that helps you shorten links
+                instantly, track clicks, and manage URLs from one powerful dashboard.
               </p>
 
               <form
@@ -705,6 +726,71 @@ function UnifiedWorkspace() {
               transition={{ duration: 0.3 }}
               className="mt-10"
             >
+              <section className="mb-8 overflow-hidden rounded-[2rem] border border-blue-100 bg-gradient-to-br from-white via-blue-50/70 to-indigo-50/80 p-6 shadow-sm dark:border-slate-800 dark:from-slate-900 dark:via-slate-900 dark:to-slate-800 sm:p-8 lg:p-10">
+                <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-[0.24em] text-blue-600 dark:text-blue-300">
+                      Smart link management
+                    </p>
+                    <h2 className="mt-3 text-2xl font-bold tracking-tight text-slate-900 dark:text-slate-100 sm:text-3xl">
+                      Shorten Links Instantly
+                    </h2>
+                    <p className="mt-4 text-sm leading-7 text-slate-600 dark:text-slate-300 sm:text-base">
+                      NotURL is a fast and free URL shortener that helps you shorten links
+                      instantly, track clicks, and manage your URLs easily. Whether you need a link
+                      shortener with analytics for personal use, campaigns, social media, or product
+                      launches, NotURL provides a simple and powerful solution. Create clean short
+                      links, organize them in your dashboard, and understand how every shared URL
+                      performs over time. With built-in analytics, you can track clicks and
+                      performance, compare engagement, and make smarter decisions for every link you
+                      share. It is designed for creators, students, businesses, and teams that want
+                      a reliable way to turn long URLs into memorable links while keeping click data
+                      easy to review on any device.
+                    </p>
+                  </div>
+
+                  <div
+                    className="rounded-3xl border border-white/70 bg-white/80 p-5 shadow-xl shadow-blue-100/60 dark:border-slate-700 dark:bg-slate-900/80 dark:shadow-black/20"
+                    role="img"
+                    aria-label="URL shortener dashboard"
+                  >
+                    <h2 className="text-xl font-bold text-slate-900 dark:text-slate-100">
+                      Track Clicks and Performance
+                    </h2>
+                    <div className="mt-5 grid grid-cols-3 gap-3">
+                      <div className="rounded-2xl bg-blue-50 p-4 dark:bg-slate-800">
+                        <p className="text-xs font-semibold text-slate-500 dark:text-slate-400">
+                          Links
+                        </p>
+                        <p className="mt-1 text-2xl font-bold text-blue-700 dark:text-blue-300">
+                          10K+
+                        </p>
+                      </div>
+                      <div className="rounded-2xl bg-emerald-50 p-4 dark:bg-slate-800">
+                        <p className="text-xs font-semibold text-slate-500 dark:text-slate-400">
+                          Clicks
+                        </p>
+                        <p className="mt-1 text-2xl font-bold text-emerald-700 dark:text-emerald-300">
+                          50K+
+                        </p>
+                      </div>
+                      <div className="rounded-2xl bg-indigo-50 p-4 dark:bg-slate-800">
+                        <p className="text-xs font-semibold text-slate-500 dark:text-slate-400">
+                          Uptime
+                        </p>
+                        <p className="mt-1 text-2xl font-bold text-indigo-700 dark:text-indigo-300">
+                          99.9%
+                        </p>
+                      </div>
+                    </div>
+                    <p className="mt-5 text-sm leading-6 text-slate-600 dark:text-slate-300">
+                      Use one clean workspace to create short links, review analytics, and improve
+                      the performance of every campaign URL.
+                    </p>
+                  </div>
+                </div>
+              </section>
+
               <div className="grid gap-4 md:grid-cols-3">
                 {landingHighlights.map((item) => {
                   const Icon = item.icon;

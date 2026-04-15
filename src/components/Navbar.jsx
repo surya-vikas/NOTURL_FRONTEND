@@ -20,7 +20,7 @@ function Navbar() {
 
   const [mobileOpen, setMobileOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState("dark");
 
   useEffect(() => {
     const onScroll = () => {
@@ -41,7 +41,7 @@ function Navbar() {
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
-    const initialTheme = savedTheme === "dark" ? "dark" : "light";
+    const initialTheme = savedTheme === "light" ? "light" : "dark";
     setTheme(initialTheme);
     document.documentElement.classList.toggle("dark", initialTheme === "dark");
   }, []);

@@ -1,33 +1,34 @@
-import { FiGithub, FiGlobe, FiLinkedin } from "react-icons/fi";
+import { Link } from "react-router-dom";
+import { FiGlobe, FiMail } from "react-icons/fi";
 
 const footerColumns = [
   {
     heading: "Product",
     links: [
-      { label: "Features", href: "#features" },
-      { label: "Pricing", href: "#pricing" },
-      { label: "API", href: "#docs" },
+      { label: "Home", to: "/" },
+      { label: "Help", to: "/help" },
+      { label: "Contact", to: "/contact" },
     ],
   },
   {
     heading: "Company",
     links: [
-      { label: "About", href: "#" },
-      { label: "Contact", href: "mailto:info.noturl@gmail.com" },
+      { label: "About", to: "/about" },
+      { label: "Contact", to: "/contact" },
     ],
   },
   {
     heading: "Resources",
     links: [
-      { label: "Docs", href: "#docs" },
-      { label: "Blog", href: "#" },
+      { label: "Help / FAQ", to: "/help" },
+      { label: "Privacy Policy", to: "/privacy-policy" },
     ],
   },
   {
     heading: "Legal",
     links: [
-      { label: "Privacy", href: "#" },
-      { label: "Terms", href: "#" },
+      { label: "Privacy Policy", to: "/privacy-policy" },
+      { label: "Terms of Use", to: "/terms" },
     ],
   },
 ];
@@ -45,12 +46,12 @@ function Footer() {
               <ul className="mt-4 space-y-3">
                 {column.links.map((link) => (
                   <li key={link.label}>
-                    <a
-                      href={link.href}
+                    <Link
+                      to={link.to}
                       className="text-sm text-slate-400 transition duration-300 hover:text-blue-300"
                     >
                       {link.label}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -63,21 +64,14 @@ function Footer() {
             <p>Email: info.noturl@gmail.com</p>
             <div className="flex items-center gap-3">
               <a
-                href="#"
-                aria-label="NotURL on GitHub"
+                href="mailto:info.noturl@gmail.com"
+                aria-label="Email NotURL support"
                 className="rounded-lg bg-slate-900/80 p-2 text-slate-300 transition duration-300 hover:-translate-y-0.5 hover:text-white"
               >
-                <FiGithub />
+                <FiMail />
               </a>
               <a
-                href="#"
-                aria-label="NotURL on LinkedIn"
-                className="rounded-lg bg-slate-900/80 p-2 text-slate-300 transition duration-300 hover:-translate-y-0.5 hover:text-white"
-              >
-                <FiLinkedin />
-              </a>
-              <a
-                href="#"
+                href="https://noturl.in"
                 aria-label="NotURL website"
                 className="rounded-lg bg-slate-900/80 p-2 text-slate-300 transition duration-300 hover:-translate-y-0.5 hover:text-white"
               >

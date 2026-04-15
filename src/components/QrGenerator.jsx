@@ -147,7 +147,12 @@ function QrGenerator({ defaultShortUrl = "", urlHistory = [], onNotify }) {
           <p className="text-sm font-semibold text-slate-800 dark:text-slate-100">QR Preview</p>
           <div className="mt-4 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div className="rounded-xl border border-slate-200 bg-white p-3 dark:border-slate-700 dark:bg-slate-800">
-              <img src={qrDataUrl} alt="Generated QR code" className="h-44 w-44" />
+              <img
+                src={qrDataUrl}
+                alt="URL shortener dashboard generated QR code"
+                loading="lazy"
+                className="h-44 w-44"
+              />
             </div>
             <button
               type="button"
