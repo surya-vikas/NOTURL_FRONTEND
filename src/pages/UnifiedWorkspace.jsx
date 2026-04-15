@@ -73,6 +73,7 @@ function UnifiedWorkspace() {
   const [pendingDeleteIds, setPendingDeleteIds] = useState(new Set());
   const [pendingEditIds, setPendingEditIds] = useState(new Set());
   const [loginModalOpen, setLoginModalOpen] = useState(false);
+  const [loginModalMode, setLoginModalMode] = useState("login");
   const [profileModalOpen, setProfileModalOpen] = useState(false);
   const [settingsModalOpen, setSettingsModalOpen] = useState(false);
   const [aliasConflictModalOpen, setAliasConflictModalOpen] = useState(false);
@@ -188,6 +189,7 @@ function UnifiedWorkspace() {
   const ctr = totalLinks > 0 ? `${((totalClicks / totalLinks) * 100).toFixed(1)}%` : "0.0%";
 
   const promptLoginForShortening = () => {
+    setLoginModalMode("login");
     setLoginModalOpen(true);
     addToast({
       type: "error",
@@ -453,7 +455,14 @@ function UnifiedWorkspace() {
       <UnifiedNavbar
         isAuthenticated={isAuthenticated}
         user={user}
-        onOpenLogin={() => setLoginModalOpen(true)}
+        onOpenLogin={() => {
+          setLoginModalMode("login");
+          setLoginModalOpen(true);
+        }}
+        onOpenSignup={() => {
+          setLoginModalMode("signup");
+          setLoginModalOpen(true);
+        }}
         onOpenProfile={() => setProfileModalOpen(true)}
         onOpenSettings={() => setSettingsModalOpen(true)}
         onLogout={handleLogout}
@@ -735,6 +744,7 @@ function UnifiedWorkspace() {
       <LoginPromptModal
         open={loginModalOpen}
         onClose={() => setLoginModalOpen(false)}
+        defaultMode={loginModalMode}
         onAuthSuccess={handleAuthSuccess}
         addToast={addToast}
       />

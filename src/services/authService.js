@@ -13,21 +13,12 @@ export const sendOtp = async ({ email }) => {
   return response.data;
 };
 
-export const verifyOtp = async ({ email, otp }) => {
+export const verifyOtp = async ({ email, otp, name, phone }) => {
   const response = await api.post(authPath("/verify-otp"), {
     email,
     otp,
-  });
-  return response.data;
-};
-
-export const signupWithEmail = async ({ name, email, phone, password, acceptedTerms }) => {
-  const response = await api.post(authPath("/signup"), {
     name,
-    email,
     phone,
-    password,
-    acceptedTerms,
   });
   return response.data;
 };

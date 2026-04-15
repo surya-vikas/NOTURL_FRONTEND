@@ -10,6 +10,7 @@ function PhoneInput({
   defaultCountry = "IN",
   placeholder = "Enter phone number",
   required = true,
+  disabled = false,
 }) {
   const isValid = useMemo(() => {
     if (!value) {
@@ -35,12 +36,16 @@ function PhoneInput({
         international
         countryCallingCodeEditable={false}
         required={required}
-        className="saas-phone flex items-center rounded-xl border border-slate-200 bg-white px-3 py-2 shadow-sm transition duration-300 focus-within:border-transparent focus-within:ring-2 focus-within:ring-blue-500"
+        disabled={disabled}
+        className={`saas-phone flex items-center rounded-xl border border-slate-200 bg-white px-3 py-2 shadow-sm transition duration-300 focus-within:border-transparent focus-within:ring-2 focus-within:ring-blue-500 ${
+          disabled ? "cursor-not-allowed bg-slate-100 opacity-80" : ""
+        }`}
         numberInputProps={{
           className:
             "saas-phone-number h-6 w-full border-0 bg-transparent p-0 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none",
           autoComplete: "tel",
           inputMode: "tel",
+          disabled,
         }}
         countrySelectProps={{ "aria-label": "Select country" }}
       />

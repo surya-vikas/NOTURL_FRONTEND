@@ -28,6 +28,7 @@ function UnifiedNavbar({
   isAuthenticated,
   user,
   onOpenLogin,
+  onOpenSignup,
   onOpenProfile,
   onOpenSettings,
   onLogout,
@@ -68,13 +69,22 @@ function UnifiedNavbar({
 
         <div className="flex items-center gap-2 sm:gap-3">
           {!isAuthenticated ? (
-            <button
-              type="button"
-              onClick={onOpenLogin}
-              className="rounded-xl bg-gradient-to-r from-blue-600 to-blue-700 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-blue-700/25 transition duration-300 hover:scale-[1.02] hover:shadow-xl"
-            >
-              Login
-            </button>
+            <>
+              <button
+                type="button"
+                onClick={onOpenSignup}
+                className="rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition duration-300 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200"
+              >
+                Sign Up
+              </button>
+              <button
+                type="button"
+                onClick={onOpenLogin}
+                className="rounded-xl bg-gradient-to-r from-blue-600 to-blue-700 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-blue-700/25 transition duration-300 hover:scale-[1.02] hover:shadow-xl"
+              >
+                Login
+              </button>
+            </>
           ) : (
             <div className="relative" ref={menuRef}>
               <button
