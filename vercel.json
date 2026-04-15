@@ -1,0 +1,13 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://api.noturl.in/:path*"
+    },
+    {
+      "source": "/:shortId([A-Za-z0-9_-]{6,})",
+      "destination": "https://api.noturl.in/:shortId"
+    }
+  ]
+}
