@@ -20,7 +20,7 @@ const faqs = [
   {
     question: "Can I use custom aliases?",
     answer:
-      "Yes. When creating a link, you can enter a custom alias if it is available and follows the supported character rules.",
+      "Yes. When creating a link, you can enter an available custom alias that is 6–32 characters long and uses only letters, numbers, hyphens, or underscores.",
   },
 ];
 

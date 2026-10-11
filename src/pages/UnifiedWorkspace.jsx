@@ -54,7 +54,7 @@ const heroVariant = {
     transition: { duration: 0.55, ease: "easeOut" },
   },
 };
-const aliasPattern = /^[A-Za-z0-9_-]{3,32}$/;
+const aliasPattern = /^[A-Za-z0-9_-]{6,32}$/;
 
 function UnifiedWorkspace() {
   const { user, isAuthenticated, login, logout, updateUser } = useAuth();
@@ -278,7 +278,9 @@ function UnifiedWorkspace() {
     if (normalizedAlias && !aliasPattern.test(normalizedAlias)) {
       addToast({
         type: "error",
-        message: 'Alias must be 3-32 characters using letters, numbers, "-" or "_".',
+        message: normalizedAlias.length < 6
+          ? "Alias must be at least 6 characters."
+          : 'Alias must be no more than 32 characters and use only letters, numbers, "-" or "_".',
       });
       return;
     }
@@ -464,10 +466,10 @@ function UnifiedWorkspace() {
       <Helmet>
         <title>{seoTitle}</title>
         <meta name="description" content={seoDescription} />
-        <link rel="canonical" href="https://noturl.in" />
+        <link rel="canonical" href="http://localhost:5173" />
         <meta property="og:title" content={seoTitle} />
         <meta property="og:description" content={seoDescription} />
-        <meta property="og:url" content="https://noturl.in" />
+        <meta property="og:url" content="http://localhost:5173" />
         <meta name="twitter:title" content={seoTitle} />
         <meta name="twitter:description" content={seoDescription} />
       </Helmet>
@@ -608,7 +610,7 @@ function UnifiedWorkspace() {
                 </button>
               </form>
               <p className="mx-auto mt-2 max-w-3xl text-xs text-slate-500 dark:text-slate-400">
-                Optional alias supports letters, numbers, "-" and "_". If already taken, choose to re-enter alias or generate a random one.
+                Optional alias must be at least 6 and at most 32 characters using letters, numbers, "-" or "_". If already taken, choose to re-enter alias or generate a random one.
               </p>
 
               <div className="mt-4 flex flex-wrap items-center justify-center gap-4 text-sm font-semibold text-slate-600 dark:text-slate-300">

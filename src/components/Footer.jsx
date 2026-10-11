@@ -71,7 +71,7 @@ function Footer() {
                 <FiMail />
               </a>
               <a
-                href="https://noturl.in"
+                href="http://localhost:5173"
                 aria-label="NotURL website"
                 className="rounded-lg bg-slate-900/80 p-2 text-slate-300 transition duration-300 hover:-translate-y-0.5 hover:text-white"
               >

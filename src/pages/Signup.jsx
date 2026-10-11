@@ -6,7 +6,7 @@ import AuthInput from "../components/AuthInput";
 import PhoneInput from "../components/PhoneInput";
 import { GOOGLE_CLIENT_ID } from "../config/env";
 import { getApiErrorMessage } from "../services/api";
-import { loginWithGoogle, sendOtp, signupWithEmail, verifyOtp } from "../services/authService";
+import { loginWithGoogle, sendOtp, verifyOtp } from "../services/authService";
 import { setToken, setUser } from "../utils/token";
 
 const initialForm = {
@@ -123,14 +123,11 @@ function SignupPage() {
     setIsSubmitting(true);
 
     try {
-      await verifyOtp({ email: normalizedEmail, otp: otp.trim() });
-
-      const signupData = await signupWithEmail({
+      const signupData = await verifyOtp({
         name: formData.name.trim(),
         email: normalizedEmail,
         phone: formData.phone,
-        password: formData.password,
-        acceptedTerms: formData.acceptedTerms,
+        otp: otp.trim(),
       });
 
       if (!signupData?.token) {
