@@ -3,7 +3,7 @@
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "http://localhost:5000/:path*"
+      "destination": "https://api.noturl.in/api/:path*"
     },
     {
       "source": "/(about|contact|privacy-policy|terms|help)",
@@ -11,7 +11,7 @@
     },
     {
       "source": "/:shortId([A-Za-z0-9_-]{3,32})",
-      "destination": "http://localhost:5000/:shortId"
+      "destination": "https://api.noturl.in/:shortId"
     }
   ]
 }
